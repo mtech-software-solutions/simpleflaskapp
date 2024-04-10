@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  service-1:
+    container_name: flaskapp
+    image: theearlofgray/service-1:latest
+    build: ./
+    ports:
+    - 5000:5000
