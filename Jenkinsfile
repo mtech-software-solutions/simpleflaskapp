@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_LOGIN=credentials('DOCKER_LOGIN')
-    }
     stages {
         stage('Build') {
             steps {
