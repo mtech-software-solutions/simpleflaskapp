@@ -6,14 +6,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo docker compose build'
-                sh 'sudo docker login -u ${DOCKER_LOGIN_USR} -p ${DOCKER_LOGIN_PSW}'
-                sh 'sudo docker compose push'
+                sh 'pip3 install -r requirements.txt'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'sudo docker compose up -d'
+                sh 'python3 app.py'
             }
         }
     }
