@@ -1,14 +1,19 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_LOGIN=credentials('DOCKER_LOGIN')
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                sh 'sudo docker compose build'
+                sh 'sudo docker login -u ${DOCKER_LOGIN_USR} -p ${DOCKER_LOGIN_PSW}'
+                sh 'sudo docker compose push'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'python3 app.py'
+                sh 'sudo docker compose up -d'
             }
         }
     }
